@@ -1,0 +1,108 @@
+{
+    "os": "Linux-6.5.0-35-generic-x86_64-with-glibc2.35",
+    "python": "3.10.12",
+    "heartbeatAt": "2024-05-25T23:00:38.229032",
+    "startedAt": "2024-05-25T23:00:37.559199",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "/home/juan57/Desktop/CSE3000/four_room/train_DQN.py",
+    "codePathLocal": "train_DQN.py",
+    "codePath": "train_DQN.py",
+    "git": {
+        "remote": "git@github.com:MWeltevrede/four_room.git",
+        "commit": "0030ce49a98f81ce2195eb07965d4304d9bdff0c"
+    },
+    "email": "jjtaracan@gmail.com",
+    "root": "/home/juan57/Desktop/CSE3000/four_room",
+    "host": "Juans-Blade",
+    "username": "juan57",
+    "executable": "/usr/bin/python3.10",
+    "cpu_count": 6,
+    "cpu_count_logical": 12,
+    "cpu_freq": {
+        "current": 3.513666666666667,
+        "min": 800.0,
+        "max": 5000.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 4.225,
+            "min": 800.0,
+            "max": 5000.0
+        },
+        {
+            "current": 4.206,
+            "min": 800.0,
+            "max": 5000.0
+        },
+        {
+            "current": 0.8,
+            "min": 800.0,
+            "max": 5000.0
+        },
+        {
+            "current": 4.254,
+            "min": 800.0,
+            "max": 5000.0
+        },
+        {
+            "current": 0.8,
+            "min": 800.0,
+            "max": 5000.0
+        },
+        {
+            "current": 0.8,
+            "min": 800.0,
+            "max": 5000.0
+        },
+        {
+            "current": 4.268,
+            "min": 800.0,
+            "max": 5000.0
+        },
+        {
+            "current": 4.283,
+            "min": 800.0,
+            "max": 5000.0
+        },
+        {
+            "current": 4.216,
+            "min": 800.0,
+            "max": 5000.0
+        },
+        {
+            "current": 4.241,
+            "min": 800.0,
+            "max": 5000.0
+        },
+        {
+            "current": 4.223,
+            "min": 800.0,
+            "max": 5000.0
+        },
+        {
+            "current": 4.209,
+            "min": 800.0,
+            "max": 5000.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 467.8895797729492,
+            "used": 117.95089340209961
+        }
+    },
+    "gpu": "NVIDIA GeForce RTX 2070 with Max-Q Design",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce RTX 2070 with Max-Q Design",
+            "memory_total": 8589934592
+        }
+    ],
+    "memory": {
+        "total": 31.19989013671875
+    }
+}
