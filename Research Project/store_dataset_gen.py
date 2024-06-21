@@ -104,7 +104,7 @@ def make_np_data(to_fill: Dict[str, list], images):
 # -------------------------------------------
 
 # -----------------FILLING THE DATASET-----------------
-def fill_dict_expert(to_fill: Dict[str, list], env: FourRoomsEnv, config):
+def fill_dict_expert(to_fill: Dict[str, list], env: FourRoomsEnv, config, seed):
     """
     Make a dataset according to the expert policy.
 
@@ -114,11 +114,11 @@ def fill_dict_expert(to_fill: Dict[str, list], env: FourRoomsEnv, config):
     :return: the dataset in numpy format
     """
     images = []
+    obs, _ = env.reset(seed=seed)
     for i in range(len(config['topologies'])):
         done = False
         # reset the environment once (random list index) and generate the grid for the environment (happens in
         # super.reset)
-        obs, _ = env.reset()
         images.append(env.render())
         # loop until we reach a goal position
         while not done:
@@ -129,11 +129,12 @@ def fill_dict_expert(to_fill: Dict[str, list], env: FourRoomsEnv, config):
 
             optimal_action = expert_policy(state)
             obs, done = single_action_fill(to_fill, env, optimal_action, images)
+        obs, _ = env.reset()
 
     return make_np_data(to_fill, images)
 
 
-def fill_dict_mixed(to_fill: Dict[str, list], env: FourRoomsEnv, config, random_action: bool):
+def fill_dict_mixed(to_fill: Dict[str, list], env: FourRoomsEnv, config, random_action: bool, seed):
     """
     Make a dataset according to a uniformly mixed policy. We select the expert action with 0.5 probability, and we
     select a suboptimal action with probability 0.5. The suboptimal action can either be random or it can be
@@ -146,11 +147,11 @@ def fill_dict_mixed(to_fill: Dict[str, list], env: FourRoomsEnv, config, random_
     :return: the dataset in numpy format
     """
     images = []
+    obs, _ = env.reset(seed=seed)
     for i in range(3 * len(config['topologies'])):
         done = False
         # reset the environment once (random list index) and generate the grid for the environment (happens in
         # super.reset)
-        obs, _ = env.reset()
         images.append(env.render())
         # loop until we reach a goal position
         while not done:
@@ -165,11 +166,12 @@ def fill_dict_mixed(to_fill: Dict[str, list], env: FourRoomsEnv, config, random_
             else:
                 action = random_policy(env) if random_action else suboptimal_model.predict(obs)[0]
             obs, done = single_action_fill(to_fill, env, action, images)
+        obs, _ = env.reset()
 
     return make_np_data(to_fill, images)
 
 
-def fill_dict_epsilon_greedy(to_fill: Dict[str, list], env: FourRoomsEnv, config, epsilon: float, random_action: bool):
+def fill_dict_epsilon_greedy(to_fill: Dict[str, list], env: FourRoomsEnv, config, epsilon: float, random_action: bool, seed):
     """
     Make a dataset according to an epsilon greedy policy. We select the expert action with epsilon probability, and we
     select a suboptimal action with probability 1-epsilon. The suboptimal action can either be random or it can be
@@ -183,11 +185,11 @@ def fill_dict_epsilon_greedy(to_fill: Dict[str, list], env: FourRoomsEnv, config
     :return: the dataset in numpy format
     """
     images = []
+    obs, _ = env.reset(seed=seed)
     for i in range(3 * len(config['topologies'])):
         done = False
         # reset the environment once (random list index) and generate the grid for the environment (happens in
         # super.reset)
-        obs, _ = env.reset()
         images.append(env.render())
         # loop until we reach a goal position
         while not done:
@@ -202,11 +204,12 @@ def fill_dict_epsilon_greedy(to_fill: Dict[str, list], env: FourRoomsEnv, config
             else:
                 action = random_policy(env) if random_action else suboptimal_model.predict(obs)[0]
             obs, done = single_action_fill(to_fill, env, action, images)
+        obs, _ = env.reset()
 
     return make_np_data(to_fill, images)
 
 
-def fill_dict_boltzmann_softmax(to_fill: Dict[str, list], env: FourRoomsEnv, config, temperature):
+def fill_dict_boltzmann_softmax(to_fill: Dict[str, list], env: FourRoomsEnv, config, temperature, seed):
     """
     Make a dataset according to boltzmann softmax policy. We select actions by their q-values. The higher the q-value
     of an action in comparison to the other actions the higher the probability of picking it. This balances the expert
@@ -219,11 +222,11 @@ def fill_dict_boltzmann_softmax(to_fill: Dict[str, list], env: FourRoomsEnv, con
     :return: the dataset in numpy format
     """
     images = []
+    obs, _ = env.reset(seed=seed)
     for i in range(3 * len(config['topologies'])):
         done = False
         # reset the environment once (random list index) and generate the grid for the environment (happens in
         # super.reset)
-        obs, _ = env.reset()
         images.append(env.render())
         # loop until we reach a goal position
         while not done:
@@ -234,11 +237,12 @@ def fill_dict_boltzmann_softmax(to_fill: Dict[str, list], env: FourRoomsEnv, con
 
             optimal_action = boltzmann_softmax_policy(state, temperature)
             obs, done = single_action_fill(to_fill, env, optimal_action, images)
+        obs, _ = env.reset()
 
     return make_np_data(to_fill, images)
 
 
-def fill_dict_adversarial(to_fill: Dict[str, list], env: FourRoomsEnv, config, epsilon):
+def fill_dict_adversarial(to_fill: Dict[str, list], env: FourRoomsEnv, config, epsilon, seed):
     """
     Make a dataset according to an epsilon greedy policy. We select the expert action with epsilon probability, and we
     select an adversarial action with probability 1-epsilon. The adversarial action is the one with the lowest q-value
@@ -251,11 +255,11 @@ def fill_dict_adversarial(to_fill: Dict[str, list], env: FourRoomsEnv, config, e
     :return: the dataset in numpy format
     """
     images = []
+    obs, _ = env.reset(seed=seed)
     for i in range(3 * len(config['topologies'])):
         done = False
         # reset the environment once (random list index) and generate the grid for the environment (happens in
         # super.reset)
-        obs, _ = env.reset()
         images.append(env.render())
         # loop until we reach a goal position
         while not done:
@@ -270,11 +274,12 @@ def fill_dict_adversarial(to_fill: Dict[str, list], env: FourRoomsEnv, config, e
             else:
                 action = adversarial_policy(state)
             obs, done = single_action_fill(to_fill, env, action, images)
+        obs, _ = env.reset()
 
     return make_np_data(to_fill, images)
 
 
-def fill_dict_random(to_fill: Dict[str, list], env: FourRoomsEnv, config):
+def fill_dict_random(to_fill: Dict[str, list], env: FourRoomsEnv, config, seed):
     """
     Make a dataset according to a fully random policy. Actions are uniformly sampled from the environment action space
     at each step.
@@ -285,11 +290,11 @@ def fill_dict_random(to_fill: Dict[str, list], env: FourRoomsEnv, config):
     :return: the dataset in numpy format
     """
     images = []
+    obs, _ = env.reset(seed=seed)
     for i in range(len(config['topologies'])):
         done = False
         # reset the environment once (random list index) and generate the grid for the environment (happens in
         # super.reset)
-        obs, _ = env.reset()
         images.append(env.render())
         # loop until we reach a goal position
         while not done:
@@ -298,22 +303,47 @@ def fill_dict_random(to_fill: Dict[str, list], env: FourRoomsEnv, config):
 
             action = random_policy(env)
             obs, done = single_action_fill(to_fill, env, action, images)
+        obs, _ = env.reset()
 
     return make_np_data(to_fill, images)
 
 
 # -----------------GENERATING THE DATASET-----------------
-def gen_dataset():
-    dataset = fill_dict_boltzmann_softmax(data, wrapped_env, train_config, 1.5)
+def gen_dataset(policy_name, seed, step):
+    dataset = None
+    if policy_name == 'expert':
+        dataset = fill_dict_expert(data, wrapped_env, train_config, seed)
+    elif policy_name == 'mixed_random':
+        dataset = fill_dict_mixed(data, wrapped_env, train_config, True, seed)
+    elif policy_name == 'mixed_suboptimal':
+        dataset = fill_dict_mixed(data, wrapped_env, train_config, False, seed)
+    elif policy_name == 'egreedy':
+        dataset = fill_dict_epsilon_greedy(data, wrapped_env, train_config, 0.75, False, seed)
+    elif policy_name == 'boltzmann_05':
+        dataset = fill_dict_boltzmann_softmax(data, wrapped_env, train_config, 0.5, seed)
+    elif policy_name == 'boltzmann_15':
+        dataset = fill_dict_boltzmann_softmax(data, wrapped_env, train_config, 1.5, seed)
+    elif policy_name == 'random':
+        dataset = fill_dict_random(data, wrapped_env, train_config, seed)
     # create a variant supported by bc
     bc_dataset = MDPDataset(dataset['observations'], dataset['actions'], dataset['rewards'], dataset['terminals'],
                             action_size=3)
-    with open('DATASETS/boltzmann_dataset_15_iql_3.pkl', 'wb') as writeFile:
+    with open('DATASETS2/{}_dataset_iql_{}.pkl'.format(policy_name, step), 'wb') as writeFile:
         # Serialize and save the data to the file
         pickle.dump(dataset, writeFile)
-    with open('DATASETS/boltzmann_dataset_15_bc_3.pkl', 'wb') as writeFile:
+    with open('DATASETS2/{}_dataset_bc_{}.pkl'.format(policy_name, step), 'wb') as writeFile:
         # Serialize and save the data to the file
         pickle.dump(bc_dataset, writeFile)
 
 
-gen_dataset()
+for i in range(3):
+    seeds = [50, 100, 150]
+    random.seed(seeds[i])
+    gen_dataset('expert', seeds[i], i+1)
+    gen_dataset('mixed_random', seeds[i], i+1)
+    gen_dataset('mixed_suboptimal', seeds[i], i+1)
+    gen_dataset('egreedy', seeds[i], i+1)
+    gen_dataset('boltzmann_05', seeds[i], i+1)
+    gen_dataset('boltzmann_15', seeds[i], i+1)
+    gen_dataset('random', seeds[i], i+1)
+

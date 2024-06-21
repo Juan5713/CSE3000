@@ -28,10 +28,12 @@ def transform_data(original_file, summary_file):
     grouped.to_csv(summary_file, index=False)
 
 
-steps = [100, 200, 500, 1000, 2000, 5000, 10000, 25000, 50000]
+steps = [100, 200, 500]
 
 for i in range(len(steps)):
-    transform_data("tuned_reachable/reachable_full_{}.csv".format(steps[i]),
-                   "tuned_reachable/reachable_full_{}_summary.csv".format(steps[i]))
-    transform_data("tuned_unreachable/unreachable_full_{}.csv".format(steps[i]),
-                   "tuned_unreachable/unreachable_full_{}_summary.csv".format(steps[i]))
+    # transform_data("tuned_reachable_v2/reachable_full_{}.csv".format(steps[i]),
+    #                "tuned_reachable_v2/reachable_full_{}_summary.csv".format(steps[i]))
+    # transform_data("tuned_unreachable_v2/unreachable_full_{}.csv".format(steps[i]),
+    #                "tuned_unreachable_v2/unreachable_full_{}_summary.csv".format(steps[i]))
+    transform_data("tuned_train_v2/train_full_{}.csv".format(steps[i]),
+                   "tuned_train_v2/train_full_{}_summary.csv".format(steps[i]))

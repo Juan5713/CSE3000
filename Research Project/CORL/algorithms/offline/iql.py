@@ -202,8 +202,8 @@ def eval_actor(
     # env.seed(seed)
     actor.eval()
     episode_rewards = []
+    state, _ = env.reset(seed=seed)
     for _ in range(n_episodes):
-        state, _ = env.reset(seed=seed)
         done = False
         episode_reward = 0.0
         while not done:
@@ -212,6 +212,7 @@ def eval_actor(
             done = terminated or truncated
             episode_reward += reward
         episode_rewards.append(episode_reward)
+        state, _ = env.reset()
 
     actor.train()
     return np.asarray(episode_rewards)
@@ -536,7 +537,7 @@ def train_bc(dataset, seed, steps, learning_rate=0.000701):
     bc.fit(
         dataset,
         n_steps=steps,
-        n_steps_per_epoch=1000
+        n_steps_per_epoch=100
     )
 
     return bc
@@ -544,8 +545,8 @@ def train_bc(dataset, seed, steps, learning_rate=0.000701):
 
 def eval_bc(env, test_config, bc, seed):
     rewards = []
+    obs, _ = env.reset(seed=seed)
     for i in range(len(test_config['topologies'])):
-        obs, _ = env.reset(seed=seed)
         done = False
         steps = 0
         while not done:
@@ -556,6 +557,7 @@ def eval_bc(env, test_config, bc, seed):
             done = terminated or truncated
             if done:
                 rewards.append(reward)
+        obs, _ = env.reset()
     return rewards
 
 
@@ -591,7 +593,7 @@ def train(config: TrainConfig, iql_dataset_path, bc_dataset_path, policy_name, s
                                 render_mode="rgb_array")))
 
     # make the testing environment
-    with open('../../../four_room/configs/fourrooms_test_0_config.pl', 'rb') as file:
+    with open('../../../four_room/configs/fourrooms_train_config.pl', 'rb') as file:
         test_config = dill.load(file)
 
     # create the environment
@@ -708,7 +710,7 @@ def train(config: TrainConfig, iql_dataset_path, bc_dataset_path, policy_name, s
         log_dict = trainer.train(batch)
         # wandb.log(log_dict, step=trainer.total_it)
         # Evaluate episode
-        if (t + 1) % config.eval_freq == 0:
+        if (t + 1) % config.eval_freq == 0 or t + 1 in step_array:
             # print(f"Time steps: {t + 1}")
             # re-train bc after each eval run
             if t + 1 != 100:
@@ -746,7 +748,7 @@ def train(config: TrainConfig, iql_dataset_path, bc_dataset_path, policy_name, s
                 )
 
             if not tuning:
-                file_name = "../../../RESULTS/tuned_unreachable/unreachable_full_{}.csv".format(t + 1)
+                file_name = "../../../RESULTS/tuned_train_v2/train_full_{}.csv".format(t + 1)
                 row_contents = [sum(iql_scores) / 10, sum(bc_scores) / 10, policy_name,
                                 dataset["observations"].shape[0], t + 1, seed]
                 with open(file_name, 'a+', newline='') as write_obj:
@@ -815,7 +817,7 @@ def objective_bc(trial, bc_dataset_path):
 
 
 if __name__ == "__main__":
-    tuning = True
+    tuning = False
     if not tuning:
         # 0 and 4 random prime numbers
         seeds = [0, 4219, 17333, 39779, 44987]
@@ -823,28 +825,28 @@ if __name__ == "__main__":
         for k in range(5):
             seed = seeds[k]
             # train the expert dataset
-            train(iql_dataset_path='../../../DATASETS/expert_dataset_iql.pkl',
-                  bc_dataset_path='../../../DATASETS/expert_dataset_bc.pkl',
+            train(iql_dataset_path='../../../DATASETS2/expert_dataset_iql.pkl',
+                  bc_dataset_path='../../../DATASETS2/expert_dataset_bc.pkl',
                   policy_name='Expert', seed=seed, steps=curr_steps, tuning=tuning)
             # train all the other datasets, two datasets each policy to account for a bit of stochasticity
-            for i in range(2):
-                train(iql_dataset_path='../../../DATASETS/mixed_dataset_suboptimal_iql_{}.pkl'.format(i + 1),
-                      bc_dataset_path='../../../DATASETS/mixed_dataset_suboptimal_bc_{}.pkl'.format(i + 1),
+            for i in range(3):
+                train(iql_dataset_path='../../../DATASETS2/mixed_suboptimal_dataset_iql_{}.pkl'.format(i + 1),
+                      bc_dataset_path='../../../DATASETS2/mixed_suboptimal_dataset_bc_{}.pkl'.format(i + 1),
                       policy_name='Mixed Suboptimal', seed=seed, steps=curr_steps, tuning=tuning)
-                train(iql_dataset_path='../../../DATASETS/mixed_dataset_random_iql_{}.pkl'.format(i + 1),
-                      bc_dataset_path='../../../DATASETS/mixed_dataset_random_bc_{}.pkl'.format(i + 1),
+                train(iql_dataset_path='../../../DATASETS2/mixed_random_dataset_iql_{}.pkl'.format(i + 1),
+                      bc_dataset_path='../../../DATASETS2/mixed_random_dataset_bc_{}.pkl'.format(i + 1),
                       policy_name='Mixed Random', seed=seed, steps=curr_steps, tuning=tuning)
-                train(iql_dataset_path='../../../DATASETS/egreedy_dataset_suboptimal_iql_{}.pkl'.format(i + 1),
-                      bc_dataset_path='../../../DATASETS/egreedy_dataset_suboptimal_bc_{}.pkl'.format(i + 1),
+                train(iql_dataset_path='../../../DATASETS2/egreedy_dataset_iql_{}.pkl'.format(i + 1),
+                      bc_dataset_path='../../../DATASETS2/egreedy_dataset_bc_{}.pkl'.format(i + 1),
                       policy_name='Epsilon-greedy', seed=seed, steps=curr_steps, tuning=tuning)
-                train(iql_dataset_path='../../../DATASETS/boltzmann_dataset_05_iql_{}.pkl'.format(i + 1),
-                      bc_dataset_path='../../../DATASETS/boltzmann_dataset_05_bc_{}.pkl'.format(i + 1),
+                train(iql_dataset_path='../../../DATASETS2/boltzmann_05_dataset_iql_{}.pkl'.format(i + 1),
+                      bc_dataset_path='../../../DATASETS2/boltzmann_05_dataset_bc_{}.pkl'.format(i + 1),
                       policy_name='Boltzmann Softmax: Tau 0.5', seed=seed, steps=curr_steps, tuning=tuning)
-                train(iql_dataset_path='../../../DATASETS/boltzmann_dataset_15_iql_{}.pkl'.format(i + 1),
-                      bc_dataset_path='../../../DATASETS/boltzmann_dataset_15_bc_{}.pkl'.format(i + 1),
+                train(iql_dataset_path='../../../DATASETS2/boltzmann_15_dataset_iql_{}.pkl'.format(i + 1),
+                      bc_dataset_path='../../../DATASETS2/boltzmann_15_dataset_bc_{}.pkl'.format(i + 1),
                       policy_name='Boltzmann Softmax: Tau 1.5', seed=seed, steps=curr_steps, tuning=tuning)
-                train(iql_dataset_path='../../../DATASETS/random_dataset_iql_{}.pkl'.format(i + 1),
-                      bc_dataset_path='../../../DATASETS/random_dataset_bc_{}.pkl'.format(i + 1),
+                train(iql_dataset_path='../../../DATASETS2/random_dataset_iql_{}.pkl'.format(i + 1),
+                      bc_dataset_path='../../../DATASETS2/random_dataset_bc_{}.pkl'.format(i + 1),
                       policy_name='Random', seed=seed, steps=curr_steps, tuning=tuning)
     else:
         # hyperparameter tuning

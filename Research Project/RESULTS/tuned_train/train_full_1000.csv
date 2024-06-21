@@ -1,0 +1,96 @@
+IQL Score,BC Score,Behavioral Policy,Training Set Size,Training Steps,Seed
+13.0,40.0,Expert,372,1000,0
+17.0,32.0,Mixed Suboptimal,5295,1000,0
+13.0,29.0,Mixed Random,3280,1000,0
+15.0,36.0,Epsilon-greedy,6607,1000,0
+12.0,25.0,Boltzmann Softmax: Tau 0.5,17730,1000,0
+5.0,2.0,Boltzmann Softmax: Tau 1.5,28619,1000,0
+6.0,2.0,Random,32323,1000,0
+6.0,15.0,Mixed Suboptimal,37605,1000,0
+12.0,6.0,Mixed Random,35766,1000,0
+12.0,19.0,Epsilon-greedy,38906,1000,0
+9.0,13.0,Boltzmann Softmax: Tau 0.5,49702,1000,0
+2.0,3.0,Boltzmann Softmax: Tau 1.5,60737,1000,0
+8.0,4.0,Random,64480,1000,0
+7.0,6.0,Mixed Suboptimal,69612,1000,0
+5.0,3.0,Mixed Random,67689,1000,0
+8.0,6.0,Epsilon-greedy,70873,1000,0
+6.0,5.0,Boltzmann Softmax: Tau 0.5,81661,1000,0
+6.0,3.0,Boltzmann Softmax: Tau 1.5,92730,1000,0
+9.0,3.0,Random,96473,1000,0
+9.0,40.0,Expert,372,1000,4219
+11.0,34.0,Mixed Suboptimal,5295,1000,4219
+17.0,21.0,Mixed Random,3280,1000,4219
+27.0,33.0,Epsilon-greedy,6607,1000,4219
+13.0,27.0,Boltzmann Softmax: Tau 0.5,17730,1000,4219
+4.0,7.0,Boltzmann Softmax: Tau 1.5,28619,1000,4219
+5.0,3.0,Random,32323,1000,4219
+11.0,13.0,Mixed Suboptimal,37605,1000,4219
+3.0,10.0,Mixed Random,35766,1000,4219
+8.0,19.0,Epsilon-greedy,38906,1000,4219
+8.0,13.0,Boltzmann Softmax: Tau 0.5,49702,1000,4219
+6.0,6.0,Boltzmann Softmax: Tau 1.5,60737,1000,4219
+3.0,4.0,Random,64480,1000,4219
+5.0,6.0,Mixed Suboptimal,69612,1000,4219
+3.0,5.0,Mixed Random,67689,1000,4219
+5.0,13.0,Epsilon-greedy,70873,1000,4219
+5.0,2.0,Boltzmann Softmax: Tau 0.5,81661,1000,4219
+7.0,3.0,Boltzmann Softmax: Tau 1.5,92730,1000,4219
+6.0,1.0,Random,96473,1000,4219
+11.0,40.0,Expert,372,1000,17333
+17.0,32.0,Mixed Suboptimal,5295,1000,17333
+13.0,22.0,Mixed Random,3280,1000,17333
+19.0,39.0,Epsilon-greedy,6607,1000,17333
+16.0,22.0,Boltzmann Softmax: Tau 0.5,17730,1000,17333
+1.0,5.0,Boltzmann Softmax: Tau 1.5,28619,1000,17333
+0.0,2.0,Random,32323,1000,17333
+11.0,12.0,Mixed Suboptimal,37605,1000,17333
+11.0,7.0,Mixed Random,35766,1000,17333
+9.0,18.0,Epsilon-greedy,38906,1000,17333
+4.0,10.0,Boltzmann Softmax: Tau 0.5,49702,1000,17333
+2.0,4.0,Boltzmann Softmax: Tau 1.5,60737,1000,17333
+4.0,2.0,Random,64480,1000,17333
+11.0,6.0,Mixed Suboptimal,69612,1000,17333
+2.0,6.0,Mixed Random,67689,1000,17333
+7.0,13.0,Epsilon-greedy,70873,1000,17333
+9.0,1.0,Boltzmann Softmax: Tau 0.5,81661,1000,17333
+9.0,4.0,Boltzmann Softmax: Tau 1.5,92730,1000,17333
+2.0,5.0,Random,96473,1000,17333
+6.0,40.0,Expert,372,1000,39779
+19.0,30.0,Mixed Suboptimal,5295,1000,39779
+16.0,30.0,Mixed Random,3280,1000,39779
+15.0,33.0,Epsilon-greedy,6607,1000,39779
+11.0,19.0,Boltzmann Softmax: Tau 0.5,17730,1000,39779
+5.0,5.0,Boltzmann Softmax: Tau 1.5,28619,1000,39779
+7.0,2.0,Random,32323,1000,39779
+8.0,6.0,Mixed Suboptimal,37605,1000,39779
+7.0,7.0,Mixed Random,35766,1000,39779
+7.0,13.0,Epsilon-greedy,38906,1000,39779
+9.0,12.0,Boltzmann Softmax: Tau 0.5,49702,1000,39779
+6.0,2.0,Boltzmann Softmax: Tau 1.5,60737,1000,39779
+1.0,7.0,Random,64480,1000,39779
+7.0,3.0,Mixed Suboptimal,69612,1000,39779
+7.0,6.0,Mixed Random,67689,1000,39779
+9.0,16.0,Epsilon-greedy,70873,1000,39779
+6.0,5.0,Boltzmann Softmax: Tau 0.5,81661,1000,39779
+2.0,3.0,Boltzmann Softmax: Tau 1.5,92730,1000,39779
+1.0,1.0,Random,96473,1000,39779
+1.0,40.0,Expert,372,1000,44987
+15.0,33.0,Mixed Suboptimal,5295,1000,44987
+14.0,22.0,Mixed Random,3280,1000,44987
+20.0,35.0,Epsilon-greedy,6607,1000,44987
+10.0,16.0,Boltzmann Softmax: Tau 0.5,17730,1000,44987
+2.0,3.0,Boltzmann Softmax: Tau 1.5,28619,1000,44987
+4.0,5.0,Random,32323,1000,44987
+7.0,14.0,Mixed Suboptimal,37605,1000,44987
+8.0,5.0,Mixed Random,35766,1000,44987
+15.0,21.0,Epsilon-greedy,38906,1000,44987
+7.0,8.0,Boltzmann Softmax: Tau 0.5,49702,1000,44987
+8.0,4.0,Boltzmann Softmax: Tau 1.5,60737,1000,44987
+4.0,4.0,Random,64480,1000,44987
+12.0,3.0,Mixed Suboptimal,69612,1000,44987
+4.0,7.0,Mixed Random,67689,1000,44987
+4.0,12.0,Epsilon-greedy,70873,1000,44987
+3.0,5.0,Boltzmann Softmax: Tau 0.5,81661,1000,44987
+8.0,5.0,Boltzmann Softmax: Tau 1.5,92730,1000,44987
+10.0,4.0,Random,96473,1000,44987

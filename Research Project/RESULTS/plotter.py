@@ -21,6 +21,9 @@ def plot_data(file_path, fig_path, steps_count, reachable):
     bars2 = plt.bar(positions_shifted, df['BC Score'], width=bar_width, alpha=.6, label='BC Score', color='r',
                     yerr=df['BC Score Std Dev'], error_kw=error_config)
 
+    # Add an extra plot for the legend entry for the error bars
+    plt.errorbar([], [], yerr=1, fmt=' ', color='k', elinewidth=1.5, capsize=5, label='Standard Deviation')
+
     # Add values on top of each bar
     # for bar in bars1:
     #     yval = bar.get_height()
@@ -86,14 +89,17 @@ def plot_together():
     plt.savefig(fig_path, dpi=300)
 
 
-# steps = [100, 200, 500, 1000, 2000, 5000, 10000, 25000, 50000]
-#
-# for i in range(len(steps)):
-#     plot_data("tuned_reachable/reachable_full_{}_summary.csv".format(steps[i]),
-#               "tuned_reachable/reachable_full_{}.png".format(steps[i]),
-#               steps[i], True)
-#     plot_data("tuned_unreachable/unreachable_full_{}_summary.csv".format(steps[i]),
-#               "tuned_unreachable/unreachable_full_{}.png".format(steps[i]),
-#               steps[i], False)
+steps = [100, 200, 500, 1000, 2000, 5000, 10000, 25000, 50000]
 
-plot_together()
+for i in range(len(steps)):
+    # plot_data("tuned_reachable_v2/reachable_full_{}_summary.csv".format(steps[i]),
+    #           "tuned_reachable_v2/reachable_full_{}.png".format(steps[i]),
+    #           steps[i], True)
+    # plot_data("tuned_unreachable_v2/unreachable_full_{}_summary.csv".format(steps[i]),
+    #           "tuned_unreachable_v2/unreachable_full_{}.png".format(steps[i]),
+    #           steps[i], False)
+    plot_data("tuned_train_v2/train_full_{}_summary.csv".format(steps[i]),
+              "tuned_train_v2/train_full_{}.png".format(steps[i]),
+              steps[i], False)
+
+# plot_together()

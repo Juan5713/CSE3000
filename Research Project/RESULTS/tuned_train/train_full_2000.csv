@@ -1,0 +1,96 @@
+IQL Score,BC Score,Behavioral Policy,Training Set Size,Training Steps,Seed
+14.0,40.0,Expert,372,2000,0
+19.0,30.0,Mixed Suboptimal,5295,2000,0
+14.0,28.0,Mixed Random,3280,2000,0
+24.0,37.0,Epsilon-greedy,6607,2000,0
+16.0,27.0,Boltzmann Softmax: Tau 0.5,17730,2000,0
+10.0,18.0,Boltzmann Softmax: Tau 1.5,28619,2000,0
+4.0,15.0,Random,32323,2000,0
+8.0,17.0,Mixed Suboptimal,37605,2000,0
+7.0,20.0,Mixed Random,35766,2000,0
+9.0,30.0,Epsilon-greedy,38906,2000,0
+13.0,26.0,Boltzmann Softmax: Tau 0.5,49702,2000,0
+6.0,17.0,Boltzmann Softmax: Tau 1.5,60737,2000,0
+5.0,21.0,Random,64480,2000,0
+11.0,27.0,Mixed Suboptimal,69612,2000,0
+12.0,26.0,Mixed Random,67689,2000,0
+7.0,28.0,Epsilon-greedy,70873,2000,0
+6.0,16.0,Boltzmann Softmax: Tau 0.5,81661,2000,0
+8.0,20.0,Boltzmann Softmax: Tau 1.5,92730,2000,0
+10.0,14.0,Random,96473,2000,0
+9.0,40.0,Expert,372,2000,4219
+16.0,32.0,Mixed Suboptimal,5295,2000,4219
+19.0,30.0,Mixed Random,3280,2000,4219
+18.0,35.0,Epsilon-greedy,6607,2000,4219
+11.0,32.0,Boltzmann Softmax: Tau 0.5,17730,2000,4219
+6.0,10.0,Boltzmann Softmax: Tau 1.5,28619,2000,4219
+3.0,16.0,Random,32323,2000,4219
+10.0,29.0,Mixed Suboptimal,37605,2000,4219
+5.0,30.0,Mixed Random,35766,2000,4219
+15.0,32.0,Epsilon-greedy,38906,2000,4219
+8.0,21.0,Boltzmann Softmax: Tau 0.5,49702,2000,4219
+6.0,21.0,Boltzmann Softmax: Tau 1.5,60737,2000,4219
+3.0,18.0,Random,64480,2000,4219
+10.0,23.0,Mixed Suboptimal,69612,2000,4219
+2.0,23.0,Mixed Random,67689,2000,4219
+9.0,31.0,Epsilon-greedy,70873,2000,4219
+9.0,20.0,Boltzmann Softmax: Tau 0.5,81661,2000,4219
+5.0,15.0,Boltzmann Softmax: Tau 1.5,92730,2000,4219
+4.0,17.0,Random,96473,2000,4219
+10.0,40.0,Expert,372,2000,17333
+18.0,35.0,Mixed Suboptimal,5295,2000,17333
+13.0,20.0,Mixed Random,3280,2000,17333
+21.0,36.0,Epsilon-greedy,6607,2000,17333
+13.0,29.0,Boltzmann Softmax: Tau 0.5,17730,2000,17333
+6.0,19.0,Boltzmann Softmax: Tau 1.5,28619,2000,17333
+0.0,17.0,Random,32323,2000,17333
+17.0,25.0,Mixed Suboptimal,37605,2000,17333
+12.0,26.0,Mixed Random,35766,2000,17333
+13.0,31.0,Epsilon-greedy,38906,2000,17333
+3.0,29.0,Boltzmann Softmax: Tau 0.5,49702,2000,17333
+8.0,14.0,Boltzmann Softmax: Tau 1.5,60737,2000,17333
+6.0,15.0,Random,64480,2000,17333
+9.0,15.0,Mixed Suboptimal,69612,2000,17333
+5.0,19.0,Mixed Random,67689,2000,17333
+10.0,27.0,Epsilon-greedy,70873,2000,17333
+6.0,25.0,Boltzmann Softmax: Tau 0.5,81661,2000,17333
+7.0,14.0,Boltzmann Softmax: Tau 1.5,92730,2000,17333
+2.0,11.0,Random,96473,2000,17333
+3.0,40.0,Expert,372,2000,39779
+14.0,37.0,Mixed Suboptimal,5295,2000,39779
+18.0,21.0,Mixed Random,3280,2000,39779
+17.0,34.0,Epsilon-greedy,6607,2000,39779
+12.0,31.0,Boltzmann Softmax: Tau 0.5,17730,2000,39779
+7.0,18.0,Boltzmann Softmax: Tau 1.5,28619,2000,39779
+7.0,10.0,Random,32323,2000,39779
+6.0,23.0,Mixed Suboptimal,37605,2000,39779
+4.0,23.0,Mixed Random,35766,2000,39779
+16.0,28.0,Epsilon-greedy,38906,2000,39779
+4.0,23.0,Boltzmann Softmax: Tau 0.5,49702,2000,39779
+5.0,22.0,Boltzmann Softmax: Tau 1.5,60737,2000,39779
+1.0,17.0,Random,64480,2000,39779
+9.0,30.0,Mixed Suboptimal,69612,2000,39779
+4.0,21.0,Mixed Random,67689,2000,39779
+7.0,35.0,Epsilon-greedy,70873,2000,39779
+3.0,27.0,Boltzmann Softmax: Tau 0.5,81661,2000,39779
+4.0,14.0,Boltzmann Softmax: Tau 1.5,92730,2000,39779
+1.0,12.0,Random,96473,2000,39779
+2.0,40.0,Expert,372,2000,44987
+13.0,31.0,Mixed Suboptimal,5295,2000,44987
+15.0,26.0,Mixed Random,3280,2000,44987
+16.0,36.0,Epsilon-greedy,6607,2000,44987
+9.0,31.0,Boltzmann Softmax: Tau 0.5,17730,2000,44987
+11.0,15.0,Boltzmann Softmax: Tau 1.5,28619,2000,44987
+7.0,18.0,Random,32323,2000,44987
+7.0,27.0,Mixed Suboptimal,37605,2000,44987
+10.0,20.0,Mixed Random,35766,2000,44987
+13.0,28.0,Epsilon-greedy,38906,2000,44987
+10.0,25.0,Boltzmann Softmax: Tau 0.5,49702,2000,44987
+6.0,18.0,Boltzmann Softmax: Tau 1.5,60737,2000,44987
+4.0,12.0,Random,64480,2000,44987
+10.0,28.0,Mixed Suboptimal,69612,2000,44987
+3.0,20.0,Mixed Random,67689,2000,44987
+10.0,28.0,Epsilon-greedy,70873,2000,44987
+4.0,21.0,Boltzmann Softmax: Tau 0.5,81661,2000,44987
+4.0,21.0,Boltzmann Softmax: Tau 1.5,92730,2000,44987
+3.0,17.0,Random,96473,2000,44987
