@@ -1,11 +1,25 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-
+import seaborn as sns
 
 def plot_data(file_path, fig_path, steps_count, reachable):
     # Load the CSV file
     df = pd.read_csv(file_path)
+    sns.set_palette(sns.color_palette("colorblind"))
     plt.rcParams.update({'font.size': 14})
+
+    # Set the background and text color
+    plt.rcParams.update({
+        'axes.facecolor': 'black',
+        'axes.edgecolor': 'white',
+        'axes.labelcolor': 'white',
+        'xtick.color': 'white',
+        'ytick.color': 'white',
+        'figure.facecolor': 'black',
+        'figure.edgecolor': 'white',
+        'text.color': 'white',
+        'legend.frameon': False
+    })
 
     # Set up the figure and axis
     plt.figure(figsize=(12, 8))
@@ -14,23 +28,15 @@ def plot_data(file_path, fig_path, steps_count, reachable):
     bar_width = 0.4
     positions = range(len(df['Behavioral Policy']))
     positions_shifted = [p + bar_width for p in positions]
-    error_config = {'capsize': 5, 'capthick': 2, 'elinewidth': 1.5}
+    error_config = {'capsize': 5, 'capthick': 2, 'elinewidth': 1.5, 'ecolor': 'white'}
 
-    bars1 = plt.bar(positions, df['IQL Score'], width=bar_width, alpha=.6, label='IQL Score', color='b',
+    bars1 = plt.bar(positions, df['IQL Score'], width=bar_width, alpha=.6, label='IQL Score',
                     yerr=df['IQL Score Std Dev'], error_kw=error_config)
-    bars2 = plt.bar(positions_shifted, df['BC Score'], width=bar_width, alpha=.6, label='BC Score', color='r',
+    bars2 = plt.bar(positions_shifted, df['BC Score'], width=bar_width, alpha=.6, label='BC Score',
                     yerr=df['BC Score Std Dev'], error_kw=error_config)
 
     # Add an extra plot for the legend entry for the error bars
-    plt.errorbar([], [], yerr=1, fmt=' ', color='k', elinewidth=1.5, capsize=5, label='Standard Deviation')
-
-    # Add values on top of each bar
-    # for bar in bars1:
-    #     yval = bar.get_height()
-    #     plt.text(bar.get_x() + bar.get_width() / 2, yval + 1, round(yval, 1), ha='center', va='bottom')
-    # for bar in bars2:
-    #     yval = bar.get_height()
-    #     plt.text(bar.get_x() + bar.get_width() / 2, yval + 1, round(yval, 1), ha='center', va='bottom')
+    plt.errorbar([], [], yerr=1, fmt=' ', color='white', elinewidth=1.5, capsize=5, label='Standard Deviation')
 
     # Set the x-ticks and labels
     plt.xlabel('Behavioral Policy', labelpad=20)
@@ -40,10 +46,8 @@ def plot_data(file_path, fig_path, steps_count, reachable):
     # Set y-axis limits
     plt.ylim(0, 40)
 
-    # Set the title and legend
-    reachability = 'reachable' if reachable else 'unreachable'
-    plt.title('Reward obtained by IQL and BC on {} test set, {} training steps'.format(reachability, steps_count))
-    plt.legend(title='Score Type', bbox_to_anchor=(1.05, 1), loc='upper left')
+    # Set the legend
+    plt.legend(title='Score Type', loc='upper right')
 
     # Adjust layout to make room for the rotated x-axis labels and legend
     plt.tight_layout()
@@ -92,14 +96,14 @@ def plot_together():
 steps = [100, 200, 500, 1000, 2000, 5000, 10000, 25000, 50000]
 
 for i in range(len(steps)):
-    # plot_data("tuned_reachable_v2/reachable_full_{}_summary.csv".format(steps[i]),
-    #           "tuned_reachable_v2/reachable_full_{}.png".format(steps[i]),
-    #           steps[i], True)
-    # plot_data("tuned_unreachable_v2/unreachable_full_{}_summary.csv".format(steps[i]),
-    #           "tuned_unreachable_v2/unreachable_full_{}.png".format(steps[i]),
-    #           steps[i], False)
-    plot_data("tuned_train_v2/train_full_{}_summary.csv".format(steps[i]),
-              "tuned_train_v2/train_full_{}.png".format(steps[i]),
+    plot_data("tuned_reachable_v2/reachable_full_{}_summary.csv".format(steps[i]),
+              "extra_plots/reachable_full_{}.png".format(steps[i]),
+              steps[i], True)
+    plot_data("tuned_unreachable_v2/unreachable_full_{}_summary.csv".format(steps[i]),
+              "extra_plots/unreachable_full_{}.png".format(steps[i]),
               steps[i], False)
+    # plot_data("tuned_train_v2/train_full_{}_summary.csv".format(steps[i]),
+    #           "tuned_train_v2/train_full_{}.png".format(steps[i]),
+    #           steps[i], False)
 
 # plot_together()
